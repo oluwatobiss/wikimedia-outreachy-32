@@ -82,6 +82,31 @@
       ];
 
       /* YOUR CODE HERE */
+
+      const orderedListElement = document.createElement("ol");
+      orderedListElement.setAttribute("type", "A");
+
+      data.forEach((d) => {
+        const dateConfigOptions = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const dateObject = new Date(d.creation_date);
+        const usEnglishDateFormat = new Intl.DateTimeFormat(
+          "en-US",
+          dateConfigOptions,
+        ).format(dateObject);
+
+        const text = `Article "${d.title}" (Page ID ${d.page_id}) was created at ${usEnglishDateFormat}.`;
+        const listItemElement = document.createElement("li");
+        const listItemText = document.createTextNode(text);
+
+        listItemElement.appendChild(listItemText);
+        orderedListElement.appendChild(listItemElement);
+      });
+
+      document.getElementById("results").appendChild(orderedListElement);
     </script>
     <script>
       document.getElementById("code").innerText =
