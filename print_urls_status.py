@@ -7,14 +7,15 @@ with open("Task 2 - Intern.csv", "r") as file:
             urls.append(line.strip())
 
 for index, url in enumerate(urls):
-    print(f"{index + 1}. {url}")
-
+    label = index + 1
     try:
         with request.urlopen(url) as response:
             status = response.getcode()
-            print(response)
-            print(status)
+            text = f"{label}. ({status}) {url}"
+            print(text)
     except error.HTTPError as e:
-        print(f"HTTP Server Error: {e.code}")
+        text = f"{label}. ({e.code}) {url}"
+        print(text)
     except error.URLError as e:
-        print(f"URL Error: {e.reason}")
+        text = f"{label}. (504) {url}"
+        print(text)
