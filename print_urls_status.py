@@ -21,7 +21,8 @@ with open("Task 2 - Intern.csv", "r") as file:
 for index, url in enumerate(urls):
     label = convert_number_to_letter(index)
     try:
-        with request.urlopen(url) as response:
+        request_object = request.Request(url, method="HEAD")
+        with request.urlopen(request_object) as response:
             status = response.getcode()
             text = f"{label}. ({status}) {url}"
             print(text)
