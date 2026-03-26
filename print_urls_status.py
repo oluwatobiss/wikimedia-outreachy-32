@@ -12,13 +12,17 @@ def convert_number_to_letter(index):
 
     return final_letter
 
-with open("Task 2 - Intern.csv", "r") as file:
-    urls = []
-    for line in file:
-        if line.strip() and line.strip().startswith("http"):
-            urls.append(line.strip())
+def create_url_list(file_name, mode):
+    with open(file_name, mode) as file:
+        urls = []
+        for line in file:
+            if line.strip() and line.strip().startswith("http"):
+                urls.append(line.strip())
+    return urls
 
-for index, url in enumerate(urls):
+url_list = create_url_list("Task 2 - Intern.csv", "r")
+
+for index, url in enumerate(url_list):
     label = convert_number_to_letter(index)
     try:
         request_object = request.Request(url, method="HEAD")
