@@ -21,6 +21,10 @@ I used only built-in features for these solutions, avoiding third-party librarie
 2. I used the `forEach()` method to iterate through the `data` array and generate each `<li>` element based on the item's content.
 3. Finally, I used `appendChild()` to add the ordered list to the `#results` section.
 
+<img src="assets/task_1_001.png" alt="Task 1's content above the fold" style="width:45%; height:auto;">
+
+<img src="assets/task_1_002.png" alt="Task 1's content below the fold" style="width:45%; height:auto;">
+
 ### Usage
 
 1. Clone the project.
@@ -58,6 +62,8 @@ cd wikimedia-outreachy-32
 2. I retrieved the HEAD of each website to obtain its response status code.
 3. I then printed the status codes and URLs as an ordered list, formatted with Excel-style labels.
 4. Finally, I refactored the codebase into modular functions to improve organization, readability, and maintainability.
+
+<img src="assets/task_2.png" alt="Task 2's list of status codes and their corresponding URLs" style="width:45%; height:auto;">
 
 ### Usage
 
