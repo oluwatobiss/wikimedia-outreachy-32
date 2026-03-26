@@ -36,4 +36,6 @@ def print_url_and_status(url_list):
             text = f"{label}. (504) {url}"
             print(text)
 
-print_url_and_status(get_urls("Task 2 - Intern.csv", "r"))
+# Run the `print_url_and_status` function only when this script is executed directly using the Python command (e.g., `python print_urls_status.py`), rather than when it is imported as a module.
+if __name__ == "__main__":
+    print_url_and_status(get_urls("Task 2 - Intern.csv", "r"))
