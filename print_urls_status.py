@@ -1,4 +1,6 @@
 from urllib import request, error
+from http import client
+import time
 
 def convert_number_to_letter(index):
     final_letter = ""
@@ -23,8 +25,9 @@ def get_urls(file_name, mode):
 def print_url_and_status(url_list):
     for index, url in enumerate(url_list):
         label = convert_number_to_letter(index)
+        headers = { "User-Agent": "Mozilla/5.0" }
         try:
-            request_object = request.Request(url, method="HEAD")
+            request_object = request.Request(url, method="HEAD", headers=headers)
             with request.urlopen(request_object) as response:
                 status = response.getcode()
                 text = f"{label}. ({status}) {url}"
@@ -35,6 +38,14 @@ def print_url_and_status(url_list):
         except error.URLError as e:
             text = f"{label}. (504) {url}"
             print(text)
+        except client.RemoteDisconnected:
+            text = f"{label}. (504) {url}"
+            print(text)
+        except ValueError:
+            text = f"{label}. (Invalid URL) {url}"
+            print(text)
+        
+        time.sleep(2)
 
 # Run the `print_url_and_status` function only when this script is executed directly using the Python command (e.g., `python print_urls_status.py`), rather than when it is imported as a module.
 if __name__ == "__main__":
