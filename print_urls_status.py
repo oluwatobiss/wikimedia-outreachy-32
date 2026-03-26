@@ -1,5 +1,17 @@
 from urllib import request, error
 
+def convert_number_to_letter(index):
+    final_letter = ""
+    current_index = index
+
+    while current_index >= 0:
+        single_letter = chr((current_index % 26) + 65)
+        final_letter =  single_letter + final_letter
+        new_index = (current_index // 26) - 1
+        current_index = new_index
+
+    return final_letter
+
 with open("Task 2 - Intern.csv", "r") as file:
     urls = []
     for line in file:
@@ -7,7 +19,7 @@ with open("Task 2 - Intern.csv", "r") as file:
             urls.append(line.strip())
 
 for index, url in enumerate(urls):
-    label = index + 1
+    label = convert_number_to_letter(index)
     try:
         with request.urlopen(url) as response:
             status = response.getcode()
