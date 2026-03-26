@@ -5,4 +5,6 @@ with open("Task 2 - Intern.csv", "r") as file:
     for line in file:
         if line.strip() and line.strip().startswith("http"):
             urls.append(line.strip())
-    print(urls)
+
+for index, url in enumerate(urls):
+    print(f"{index + 1}. {url}")
