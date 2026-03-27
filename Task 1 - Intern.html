@@ -91,7 +91,7 @@
         return li;
       }
 
-      function toUSDate(date) {
+      function toUsDate(date) {
         const dateConfig = {
           year: "numeric",
           month: "long",
@@ -104,11 +104,11 @@
         return usDate;
       }
 
-      function appendLiToOl(obj, toUSDate, ol, createLi) {
+      function appendLiToOl(obj, toUsDate, ol, createLi) {
         const liData = {
           title: obj.title,
           pageId: obj.page_id,
-          creationDate: toUSDate(obj.creation_date),
+          creationDate: toUsDate(obj.creation_date),
         };
         ol.appendChild(createLi(liData));
       }
@@ -116,7 +116,7 @@
       const ol = document.createElement("ol");
       ol.setAttribute("type", "A");
 
-      data.forEach((obj) => appendLiToOl(obj, toUSDate, ol, createLi));
+      data.forEach((obj) => appendLiToOl(obj, toUsDate, ol, createLi));
       document.getElementById("results").appendChild(ol);
     </script>
     <script>
