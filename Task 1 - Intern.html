@@ -83,30 +83,41 @@
 
       /* YOUR CODE HERE */
 
-      const orderedListElement = document.createElement("ol");
-      orderedListElement.setAttribute("type", "A");
+      function createLi(liData) {
+        const text = `Article "${liData.title}" (Page ID ${liData.pageId}) was created at ${liData.creationDate}.`;
+        const li = document.createElement("li");
+        const liText = document.createTextNode(text);
+        li.appendChild(liText);
+        return li;
+      }
 
-      data.forEach((d) => {
-        const dateConfigOptions = {
+      function toUSDate(date) {
+        const dateConfig = {
           year: "numeric",
           month: "long",
           day: "numeric",
         };
-        const dateObject = new Date(d.creation_date);
-        const usEnglishDateFormat = new Intl.DateTimeFormat(
-          "en-US",
-          dateConfigOptions,
-        ).format(dateObject);
+        const dateObj = new Date(date);
+        const usDate = new Intl.DateTimeFormat("en-US", dateConfig).format(
+          dateObj,
+        );
+        return usDate;
+      }
 
-        const text = `Article "${d.title}" (Page ID ${d.page_id}) was created at ${usEnglishDateFormat}.`;
-        const listItemElement = document.createElement("li");
-        const listItemText = document.createTextNode(text);
+      function appendLiToOl(obj, toUSDate, ol, createLi) {
+        const liData = {
+          title: obj.title,
+          pageId: obj.page_id,
+          creationDate: toUSDate(obj.creation_date),
+        };
+        ol.appendChild(createLi(liData));
+      }
 
-        listItemElement.appendChild(listItemText);
-        orderedListElement.appendChild(listItemElement);
-      });
+      const ol = document.createElement("ol");
+      ol.setAttribute("type", "A");
 
-      document.getElementById("results").appendChild(orderedListElement);
+      data.forEach((obj) => appendLiToOl(obj, toUSDate, ol, createLi));
+      document.getElementById("results").appendChild(ol);
     </script>
     <script>
       document.getElementById("code").innerText =
