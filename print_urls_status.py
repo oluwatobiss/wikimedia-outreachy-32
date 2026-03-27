@@ -7,9 +7,9 @@ def convert_number_to_letter(index):
     current_index = index
 
     while current_index >= 0:
-        single_letter = chr((current_index % 26) + 65)
-        final_letter =  single_letter + final_letter
-        new_index = (current_index // 26) - 1
+        single_character = chr((current_index % 26) + 65) # Convert index to uppercase letter (A-Z)
+        final_letter =  single_character + final_letter
+        new_index = (current_index // 26) - 1 # Get the next iteration's index (subtract 1 to create 0-based index) 
         current_index = new_index
 
     return final_letter
@@ -31,20 +31,16 @@ def print_url_and_status(url_list):
             with request.urlopen(request_object) as response:
                 status = response.getcode()
                 text = f"{label}. ({status}) {url}"
-                print(text)
         except error.HTTPError as e:
             text = f"{label}. ({e.code}) {url}"
-            print(text)
         except error.URLError as e:
             text = f"{label}. (504) {url}"
-            print(text)
         except client.RemoteDisconnected:
             text = f"{label}. (504) {url}"
-            print(text)
         except ValueError:
             text = f"{label}. (Invalid URL) {url}"
-            print(text)
-        
+
+        print(text)
         time.sleep(2)
 
 # Run the `print_url_and_status` function only when this script is executed directly using the Python command (e.g., `python print_urls_status.py`), rather than when it is imported as a module.
