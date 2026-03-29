@@ -22,7 +22,7 @@ def get_urls(file_name, mode):
                 urls.append(line.strip())
     return urls
 
-def print_url_and_status(url_list):
+def print_url_and_status(url_list, convert_number_to_letter):
     for index, url in enumerate(url_list):
         label = convert_number_to_letter(index)
         headers = { "User-Agent": "Mozilla/5.0" }
@@ -45,4 +45,5 @@ def print_url_and_status(url_list):
 
 # Run the `print_url_and_status` function only when this script is executed directly using the Python command (e.g., `python print_urls_status.py`), rather than when it is imported as a module.
 if __name__ == "__main__":
-    print_url_and_status(get_urls("Task 2 - Intern.csv", "r"))
+    url_list = get_urls("Task 2 - Intern.csv", "r")
+    print_url_and_status(url_list, convert_number_to_letter)
